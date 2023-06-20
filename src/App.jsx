@@ -1,34 +1,26 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-// import s from './style.module.css';
+import MenuList from './components/MenuList/MenuList'
+import DisplayDifficulty from './components/DisplayDifficulty/DisplayDifficulty'
+import s from './style.module.css'
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [currentDifficulty, setCurrentDifficulty] = useState('')
+
+  const onMenuListItemClick = (difficulty) => {
+    setCurrentDifficulty(difficulty)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel='noreferrer'>
-          <img src={viteLogo} alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel='noreferrer'>
-          <img src={reactLogo} alt="React logo" />
-        </a>
+    <div>
+      <h1 style={{ textAlign: 'center' }}>Select your React difficulty</h1>
+      <div className={s.workspace}>
+        <MenuList 
+          difficulty={currentDifficulty}
+          onItemClick={onMenuListItemClick}
+        />
+        <DisplayDifficulty difficulty={currentDifficulty} /> 
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
